@@ -16,6 +16,7 @@ conn_opts = {
 Thread.new do
   MQTT::Client.connect(conn_opts) do |c|
     # The block will be called when you messages arrive to the topic
+    puts "MQTT Connected"
     c.get('test') do |topic, message|
       puts "#{topic}: #{message}"
     end
