@@ -1,0 +1,21 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$background-color-default:  #D35400;
+$background-color-good:  #1D8147;
+$background-color-bad:  #C0392B;
+ 
+// ----------------------------------------------------------------------------
+// time_since_last styles
+// ----------------------------------------------------------------------------
+.widget-time-since-last {
+  background-color: $background-color-default;
+}
+
+.widget-time-since-last.good {
+  background-color: $background-color-good;
+}
+
+.widget-time-since-last.bad {
+  background-color: $background-color-bad;
+}
