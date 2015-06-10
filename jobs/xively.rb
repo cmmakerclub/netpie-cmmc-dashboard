@@ -1,6 +1,6 @@
 require 'httparty'
 
-SCHEDULER.every '10s', :first_in => 0 do |job|
+SCHEDULER.every '1m', :first_in => 0 do |job|
   begin
     # Hit Xively JSON endpoint
     datastream = HTTParty.get("https://api.xively.com/v2/feeds/469207408",

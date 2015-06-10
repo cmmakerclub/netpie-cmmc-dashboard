@@ -1,6 +1,6 @@
 <script type='text/javascript'>
 $(function() {
-Dashing.gridsterLayout('[{"col":2,"row":2,"size_x":1,"size_y":1},{"col":2,"row":1,"size_x":1,"size_y":1},{"col":1,"row":1,"size_x":1,"size_y":1},{"col":1,"row":2,"size_x":1,"size_y":1},{"col":3,"row":1,"size_x":2,"size_y":1},{"col":4,"row":2,"size_x":1,"size_y":1},{"col":3,"row":2,"size_x":1,"size_y":1}]')
+Dashing.gridsterLayout('[{"col":1,"row":1,"size_x":1,"size_y":1},{"col":1,"row":2,"size_x":1,"size_y":1},{"col":4,"row":2,"size_x":1,"size_y":1},{"col":3,"row":2,"size_x":1,"size_y":1},{"col":3,"row":1,"size_x":2,"size_y":1},{"col":2,"row":2,"size_x":1,"size_y":1},{"col":2,"row":1,"size_x":1,"size_y":1}]')
 });
 </script>
 <% content_for :title do %>Chiang Mai Maker Club - Dashboard<% end %>
@@ -14,10 +14,11 @@ Dashing.gridsterLayout('[{"col":2,"row":2,"size_x":1,"size_y":1},{"col":2,"row":
     </li>
 
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="xively_data_temperature" data-location="Average" data-measurement="Temperature, C" data-view="Temp"></div>
+      <div data-id="xively_data_humidity" data-view="Number" data-title="humidity" data-moreinfo="% Rh" data-prefix="" data-suffix=""></div>
     </li>
+
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="xively_data_humidity" data-location="Average" data-measurement="Humidity, %Rh" data-view="Hum"></div>
+      <div data-id="xively_data_temperature" data-view="Number" data-title="temperature" data-moreinfo="Temperature, C" data-prefix="" data-suffix=""></div>
     </li>
 
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
@@ -26,10 +27,10 @@ Dashing.gridsterLayout('[{"col":2,"row":2,"size_x":1,"size_y":1},{"col":2,"row":
 
 
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="xively_data_temperature" data-location="Average" data-measurement="Temperature, C" data-view="Temp"></div>
+      <div data-id="xively_data_temperature" data-location="average" data-measurement="Temperature, C" data-view="Temp"></div>
     </li>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="xively_data_humidity" data-location="Average" data-measurement="Humidity, %Rh" data-view="Hum"></div>
+      <div data-id="xively_data_humidity" data-location="average" data-measurement="Humidity, %Rh" data-view="Hum"></div>
     </li>
 
 
