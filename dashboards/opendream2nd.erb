@@ -1,0 +1,41 @@
+<script type='text/javascript'>
+$(function() {
+Dashing.gridsterLayout('[{"col":3,"row":1,"size_x":2,"size_y":1},{"col":1,"row":1,"size_x":2,"size_y":1},{"col":1,"row":2,"size_x":4,"size_y":1}]');
+
+
+
+  setTimeout(function() {
+    $(".gridster ul").gridster().data('gridster').disable();
+  }, 1000);
+
+});
+</script><div class="gridster">
+  <ul>
+
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="opendream_data_humidity" data-view="Number" data-title="humidity" data-moreinfo="% Rh" data-prefix="" data-suffix=""></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="opendream_data_temperature" data-view="Number" data-title="temperature" data-moreinfo="Temperature, C" data-prefix="" data-suffix=""></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="4" data-sizey="1">
+      <div data-id="" data-view="Clock"></div>
+    </li>
+
+<!-- 
+     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="opendream_data_temperature" data-location="average" data-measurement="Temperature, C" data-view="Temp"></div>
+     </li>
+     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="opendream_data_humidity" data-location="average" data-measurement="Humidity, %Rh" data-view="Hum"></div>
+     </li>
+ -->
+
+
+<!--     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="weather" data-view="Text"></div>
+    </li> -->
+  </ul>
+</div>
