@@ -1,16 +1,11 @@
 require 'mqtt'
 
 # Set your MQTT server
-MQTT_SERVER = 'rabbit.cmmc.ninja'
+MQTT_SERVER = 'gearbroker.netpie.io'
 
 # Set the MQTT topics you're interested in and the tag (data-id) to send for dashing events
 MQTT_TOPICS = { 
-               'esp8266/cmmc-temp1/command' => 'temp1',
-               'esp8266/cmmc-humid1/command' => 'humid1',
-               'esp8266/cityview-temp1/command' => 'citytemp1',
-               'esp8266/cityview-humid1/command' => 'cityhumid1',
-               'esp8266/opendream-temp1/command' => 'opendreamtemp1',
-               'esp8266/opendream-humid1/command' => 'opendreamhumid1',
+               '/HelloChiangMaiMakerClub/gearname/dashing' => 'temp1',
               }
 
     # send_event('xively_data_temperature', { current: temperature_value })
@@ -21,8 +16,9 @@ print "HELLO"
 Thread.new {
   MQTT::Client.connect(
     :host => MQTT_SERVER,
-    :username => 'nat:dashing',
-    :password => 'dashing'
+    :username => '2syAvlZPSExXY3M%1442403100',
+    :client_id=> 'qWeTbE1JFpwgXLnL',
+    :password => 'CyMMKKHSrG1x+NSZNWSps6UeoqE='
   ) do |client|
     print "BEGIN"
 
@@ -33,7 +29,7 @@ Thread.new {
 
     print "OK"
     client.get do |topic,message|
-      # print message
+      print message
       tag = MQTT_TOPICS[topic]
       # nat = message
       # print nat
@@ -49,6 +45,7 @@ Thread.new {
       # last_value = current_values[tag]
       # current_values[tag] = message
       # send_event(tag, { value: message, current: message, last: last_value })
+
 
       if tag == "temp1"
         send_event('xively_data_temperature', { current: message})
