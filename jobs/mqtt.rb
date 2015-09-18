@@ -1,4 +1,5 @@
 require 'mqtt'
+require 'json'
 
 # Set your MQTT server
 MQTT_SERVER = 'gearbroker.netpie.io'
@@ -6,15 +7,6 @@ MQTT_SERVER = 'gearbroker.netpie.io'
 # Set the MQTT topics you're interested in and the tag (data-id) to send for dashing events
 MQTT_TOPICS = { 
                '/HelloChiangMaiMakerClub/gearname/dashing/temp1' => 'temp1',
-               '/HelloChiangMaiMakerClub/gearname/dashing/temp2' => 'temp2',
-               '/HelloChiangMaiMakerClub/gearname/dashing/humid1' => 'humid1',
-               '/HelloChiangMaiMakerClub/gearname/dashing/humid2' => 'humid2',
-               '/HelloChiangMaiMakerClub/gearname/dashing/text1' => 'text1',
-               '/HelloChiangMaiMakerClub/gearname/dashing/text2' => 'text2',
-               '/HelloChiangMaiMakerClub/gearname/dashing/counter1' => 'counter1',
-               '/HelloChiangMaiMakerClub/gearname/dashing/counter2' => 'counter2',
-               '/HelloChiangMaiMakerClub/gearname/dashing/heap1' => 'heap1',
-               '/HelloChiangMaiMakerClub/gearname/dashing/heap2' => 'heap2',
               }
 
     # send_event('xively_data_temperature', { current: temperature_value })
@@ -31,20 +23,47 @@ Thread.new {
   ) do |client|
     print "BEGIN"
 
-    client.subscribe( MQTT_TOPICS.keys )
+    client.subscribe("/HelloChiangMaiMakerClub/gearname/#/command")
+    # /HelloChiangMaiMakerClub/gearname/dashing/temp1/status
 
     # Sets the default values to 0 - used when updating 'last_values'
     # current_values = Hash.new(0)
 
     print "OK"
     client.get do |topic,message|
-      print message
       tag = MQTT_TOPICS[topic]
+      print topic 
+      print message
+      
+      json = JSON.parse(message)
+      
+      temp = json['d']['temp']
+      humid = json['d']['humid']
+
+      heap = json['d']['heap']
+      rssi = json['d']['rssi']      
+      seconds = json['d']['seconds']
+      counter = json['d']['counter']
+      heap = json['d']['heap']                        
+      print "\n"
+      
+      send_event('xively_data_temperature', { current: temp, value: temp })
+      send_event('xively_data_humidity', { current: humid, value: humid })   
+      
+      send_event('rssi', { current: rssi, value: rssi })
+      send_event('counter', { current: counter, value: counter })         
+      send_event('heap', { current: heap, value: heap })   
+      send_event('seconds', { current: counter, value: counter })
+
+      send_event('xively_data_temperature2', { current: counter%50, value: counter%50 })
+      send_event('xively_data_humidity2', { current: counter%100, value: counter%100 })            
+          
       # nat = message
       # print nat
       # print "\n"
       # temperature_value =  nat['d']['temp']
       # humidity_value =  nat['d'][1]['humid']
+      # print message
 
 
       # print "?"
@@ -56,24 +75,6 @@ Thread.new {
       # send_event(tag, { value: message, current: message, last: last_value })
 
 
-      if tag == "temp1"
-        send_event('xively_data_temperature', { current: message})
-      end
-      if tag == "humid1"
-        send_event('xively_data_humidity', { current: message})
-      end
-      if tag == "temp2"
-        send_event('cityview_data_temperature', { current: message})
-      end
-      if tag == "humid2"
-        send_event('cityview_data_humidity', { current: message})
-      end
-      if tag == "opendreamtemp1"
-        send_event('opendream_data_temperature', { current: message})
-      end
-      if tag == "opendreamhumid1"
-        send_event('opendream_data_humidity', { current: message})
-      end
     end
   end
 }
