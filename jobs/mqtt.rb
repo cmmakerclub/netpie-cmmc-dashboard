@@ -5,7 +5,16 @@ MQTT_SERVER = 'gearbroker.netpie.io'
 
 # Set the MQTT topics you're interested in and the tag (data-id) to send for dashing events
 MQTT_TOPICS = { 
-               '/HelloChiangMaiMakerClub/gearname/dashing' => 'temp1',
+               '/HelloChiangMaiMakerClub/gearname/dashing/temp1' => 'temp1',
+               '/HelloChiangMaiMakerClub/gearname/dashing/temp2' => 'temp2',
+               '/HelloChiangMaiMakerClub/gearname/dashing/humid1' => 'humid1',
+               '/HelloChiangMaiMakerClub/gearname/dashing/humid2' => 'humid2',
+               '/HelloChiangMaiMakerClub/gearname/dashing/text1' => 'text1',
+               '/HelloChiangMaiMakerClub/gearname/dashing/text2' => 'text2',
+               '/HelloChiangMaiMakerClub/gearname/dashing/counter1' => 'counter1',
+               '/HelloChiangMaiMakerClub/gearname/dashing/counter2' => 'counter2',
+               '/HelloChiangMaiMakerClub/gearname/dashing/heap1' => 'heap1',
+               '/HelloChiangMaiMakerClub/gearname/dashing/heap2' => 'heap2',
               }
 
     # send_event('xively_data_temperature', { current: temperature_value })
@@ -53,10 +62,10 @@ Thread.new {
       if tag == "humid1"
         send_event('xively_data_humidity', { current: message})
       end
-      if tag == "citytemp1"
+      if tag == "temp2"
         send_event('cityview_data_temperature', { current: message})
       end
-      if tag == "cityhumid1"
+      if tag == "humid2"
         send_event('cityview_data_humidity', { current: message})
       end
       if tag == "opendreamtemp1"
