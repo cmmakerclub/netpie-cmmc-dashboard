@@ -6,7 +6,7 @@ MQTT_SERVER = 'gearbroker.netpie.io'
 
 # Set the MQTT topics you're interested in and the tag (data-id) to send for dashing events
 MQTT_TOPICS = { 
-               '/HelloChiangMaiMakerClub/gearname/dashing/temp1' => 'temp1',
+               '/HelloChiangMaiMakerClub/gearname/oN8smWzJ2H0wwcra/status' => 'cooler001',
               }
 
     # send_event('xively_data_temperature', { current: temperature_value })
@@ -23,40 +23,53 @@ Thread.new {
   ) do |client|
     print "BEGIN"
 
-    client.subscribe("/HelloChiangMaiMakerClub/gearname/#/command")
+    client.subscribe([
+      "/HelloChiangMaiMakerClub/gearname/#/status",
+      "/HelloChiangMaiMakerClub/gearname/#"      
+      ])
     # /HelloChiangMaiMakerClub/gearname/dashing/temp1/status
 
     # Sets the default values to 0 - used when updating 'last_values'
     # current_values = Hash.new(0)
 
-    print "OK"
+    print "OK\n"
     client.get do |topic,message|
       tag = MQTT_TOPICS[topic]
-      print topic 
-      print message
       
-      json = JSON.parse(message)
+      if tag == "cooler001" then
+        print "IF \n"
+        print message
+        json = JSON.parse(message)
+        
+        temp = json['d']['temp']
+        humid = json['d']['humid']
+  
+        heap = json['d']['heap']
+        rssi = json['d']['rssi']      
+        seconds = json['d']['seconds']
+        counter = json['d']['counter']
+        heap = json['d']['heap']                        
+        print "\n"
+        
+        send_event('xively_data_temperature2', { current: temp, value: temp })
+        send_event('xively_data_humidity2', { current: humid, value: humid })        
+                
       
-      temp = json['d']['temp']
-      humid = json['d']['humid']
+        send_event('xively_data_temperature', { current: temp, value: temp })
+        send_event('xively_data_humidity', { current: humid, value: humid })   
+        
+        send_event('rssi', { current: rssi, value: rssi })
+        send_event('counter', { current: counter, value: counter })         
+        send_event('heap', { current: heap, value: heap })   
+        send_event('seconds', { current: seconds, value: seconds })                
+      else
+        print "ELSE \n"
+        print message + "\n"        
+        print topic
+      end
 
-      heap = json['d']['heap']
-      rssi = json['d']['rssi']      
-      seconds = json['d']['seconds']
-      counter = json['d']['counter']
-      heap = json['d']['heap']                        
-      print "\n"
-      
-      send_event('xively_data_temperature', { current: temp, value: temp })
-      send_event('xively_data_humidity', { current: humid, value: humid })   
-      
-      send_event('rssi', { current: rssi, value: rssi })
-      send_event('counter', { current: counter, value: counter })         
-      send_event('heap', { current: heap, value: heap })   
-      send_event('seconds', { current: counter, value: counter })
 
-      send_event('xively_data_temperature2', { current: counter%50, value: counter%50 })
-      send_event('xively_data_humidity2', { current: counter%100, value: counter%100 })            
+            
           
       # nat = message
       # print nat
