@@ -7,6 +7,7 @@ MQTT_SERVER = 'gearbroker.netpie.io'
 # Set the MQTT topics you're interested in and the tag (data-id) to send for dashing events
 MQTT_TOPICS = { 
                '/HelloChiangMaiMakerClub/gearname/oN8smWzJ2H0wwcra/status' => 'cooler001',
+               '/HelloChiangMaiMakerClub/gearname/dashing/3AzmocC7vZDC6yjD/command' => 'wattmeter'
               }
 
     # send_event('xively_data_temperature', { current: temperature_value })
@@ -35,10 +36,11 @@ Thread.new {
     print "OK\n"
     client.get do |topic,message|
       tag = MQTT_TOPICS[topic]
-      
       if tag == "cooler001" then
-        print "IF \n"
-        print message
+        print "COOLER \n"
+        print "COOLER \n"
+        print "COOLER \n"
+        print "COOLER \n"
         json = JSON.parse(message)
         
         temp = json['d']['temp']
@@ -62,10 +64,24 @@ Thread.new {
         send_event('counter', { current: counter, value: counter })         
         send_event('heap', { current: heap, value: heap })   
         send_event('seconds', { current: seconds, value: seconds })                
+      elsif tag == "wattmeter"
+        print "MONEY \n"
+        print "MONEY \n"
+        print "MONEY \n"
+        print "MONEY \n"
+        json = JSON.parse(message)
+        
+        watt_now = json['d']['watt_now']
+        money = json['d']['money']
+
+        print watt_now
+        print money 
+        
+        send_event('xively_data_watt', { current: watt_now, value: watt_now })
+        send_event('xively_data_money', { current: money, value: money })
+
       else
         print "ELSE \n"
-        print message + "\n"        
-        print topic
       end
 
 

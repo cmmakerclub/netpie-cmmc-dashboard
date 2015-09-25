@@ -1,7 +1,10 @@
-<script type='text/javascript'> $(function() { Dashing.gridsterLayout('[{"col":3,"row":1,"size_x":2,"size_y":1},{"col":1,"row":1,"size_x":2,"size_y":1},{"col":1,"row":3,"size_x":4,"size_y":1},{"col":3,"row":2,"size_x":2,"size_y":1},{"col":1,"row":2,"size_x":2,"size_y":1},{"col":1,"row":5,"size_x":2,"size_y":1},{"col":3,"row":5,"size_x":2,"size_y":1},{"col":1,"row":4,"size_x":1,"size_y":1},{"col":4,"row":4,"size_x":1,"size_y":1},{"col":3,"row":4,"size_x":1,"size_y":1},{"col":2,"row":4,"size_x":1,"size_y":1}]')
-  // setTimeout(function() {
-  //   $(".gridster ul").gridster().data('gridster').disable();
-  // }, 1000);
+<script type='text/javascript'>
+$(function() {
+Dashing.gridsterLayout('[{"col":3,"row":1,"size_x":2,"size_y":1},{"col":1,"row":1,"size_x":2,"size_y":1},{"col":1,"row":3,"size_x":4,"size_y":1},{"col":3,"row":2,"size_x":2,"size_y":1},{"col":1,"row":2,"size_x":2,"size_y":1},{"col":2,"row":4,"size_x":1,"size_y":1},{"col":3,"row":4,"size_x":1,"size_y":1},{"col":1,"row":4,"size_x":1,"size_y":1},{"col":4,"row":4,"size_x":1,"size_y":1},{"col":3,"row":5,"size_x":2,"size_y":1},{"col":1,"row":5,"size_x":2,"size_y":1}]')
+
+  setTimeout(function() {
+    $(".gridster ul").gridster().data('gridster').disable();
+  }, 1000);
 
 });
   
@@ -28,13 +31,13 @@
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
       <div data-id="xively_data_temperature" data-view="Meter" data-title="Temperature 1" data-min="0" data-max="50"></div>
     </li>
-
+<!-- 
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="xively_data_temperature2" data-view="Meter" data-title="SAMPLE-2" data-min="0" data-max="50"></div>
+      <div data-id="xively_data_watt" data-view="Meter" data-title="WATT" data-min="0" data-max="50"></div>
     </li>
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="xively_data_humidity2" data-view="Meter" data-title="SAMPLE-2" data-min="0" data-max="100"></div>
-    </li>
+      <div data-id="xively_data_money" data-view="Meter" data-title="MONEY" data-min="0" data-max="100"></div>
+    </li> -->
 
     <!--<li data-row="1" data-col="1" data-sizex="4" data-sizey="1">
       <div data-id="welcome" data-view="Text" data-title="Hello" data-text="This is your shiny new dashboard." data-moreinfo="Protip: You can drag the widgets around!"></div>
@@ -55,6 +58,17 @@
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="seconds" data-view="Number" data-title="seconds" data-moreinfo="s" data-prefix="" data-suffix=""></div>
     </li>        
+
+
+
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="xively_data_watt" data-view="Number" data-title="Power" data-moreinfo="watt" data-prefix="" data-suffix=""></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="xively_data_money" data-view="Number" data-title="Cost" data-moreinfo="Baht" data-prefix=""
+      data-suffix=""></div>
+    </li>
 
     <!--     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
       <div data-id="weather" data-view="Text"></div>
