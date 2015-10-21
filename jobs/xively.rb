@@ -1,7 +1,11 @@
 require 'httparty'
 
+MQTT_SERVER = 'gearbroker.netpie.io'
+
 SCHEDULER.every '2m', :first_in => 0 do |job|
   begin
+
+
     # Hit Xively JSON endpoint
     # datastream = HTTParty.get("https://api.xively.com/v2/feeds/469207408",
     #             { :headers => { 'X-ApiKey' => "EnYoLFD1lVO3YJK3GPzwj3WQ60jcQmSU0Fo0qiN6mYLYD1Ax", "Content-Type" => 'application/json'}})
